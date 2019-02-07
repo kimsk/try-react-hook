@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 
-function Example() {
+
+function useMyHook () {
     const [count, setCount] = useState(0)
     const [init, setInit] = useState(false)
 
@@ -18,6 +19,11 @@ function Example() {
         setInit(true)
     }, [init])
 
+    return { count, setCount }
+}
+
+function Example() {
+    const { count, setCount } = useMyHook()
     return (
         <div>
             <p>You clicked {count} times</p>
