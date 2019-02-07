@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react"
 
+function useValue (initValue: string) {
+    const [value, setValue] = useState(initValue)
+
+    function onChange (e: any) {
+        setValue(e.target.value)
+    }
+
+    return { value, onChange }
+}
+
 function useDocumentTitle (count: number) {
     console.log('useDocumentTitle')
     // Similar to componentDidMount and componentDidUpdate:
@@ -10,7 +20,7 @@ function useDocumentTitle (count: number) {
         document.title = `${count}`
 
         return () => {
-            console.log('useMyHook: useEffect: Return')
+            console.log('useDocumentTitle: useEffect: Return')
         }
     })
     
@@ -39,13 +49,20 @@ function Example() {
     const [count, setCount] = useState(0)
     useAlert(count)
     useDocumentTitle(count)
+    const v1 = useValue("Hello")
+    const v2 = useValue("World")
 
-    return (
+    return (<div>
+        <p>You clicked {count} times</p>
         <div>
-            <p>You clicked {count} times</p>
-            <button onClick={() => setCount(count + 1)}>
-                Click me
-      </button>
+            <button onClick={() => setCount(count + 1)}>Click me</button>
+        </div>
+        <div>
+            <input {...v1} />
+        </div>
+        <div>
+            <input {...v2} />
+        </div>
         </div>
     )
 }
