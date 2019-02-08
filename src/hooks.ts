@@ -29,17 +29,12 @@ export function useDocumentTitle (count: number) {
 
 export function useAlert (count: number) {
     console.log('useAlert: enter')
-    const [init, setInit] = useState(false)
 
-    useEffect(() => {
-        console.log('useAlert: useEffect: setInit')
-        setInit(true)
-    }, [init])
-
+    // like cDM
     useEffect(() => {
         console.log('useAlert: useEffect: alert')
         alert(count)
-    }, [init])
+    }, [])
 
     console.log('useAlert: exit')
 }
