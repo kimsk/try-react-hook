@@ -6,7 +6,7 @@ interface Size {
 }
 
 function useWindowSize () {
-    const [ size, setSize ] = useState<Size>({ height: 0, width: 0 })
+    const [ size, setSize ] = useState<Size>({ height: window.innerHeight, width: window.innerWidth })
     useEffect(() => {
         const handleResize = () => {
             setSize({

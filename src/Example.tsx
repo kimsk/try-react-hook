@@ -4,6 +4,7 @@ import useValue from "./hooks/useValue"
 import useDocumentTitle from "./hooks/useDocumentTitle"
 import useAlert from "./hooks/useAlert"
 import useWindowSize from "./hooks/useWindowSize"
+import useMousePosition from "./hooks/useMousePosition"
 
 
 function Example() {
@@ -13,10 +14,12 @@ function Example() {
     useDocumentTitle(`try react hooks: ${count}`)
     const v1 = useValue("Hello")
     const v2 = useValue("World")
-    const size = useWindowSize()
+    const { height, width } = useWindowSize()
+    const { x, y } = useMousePosition()
 
     return (<div>
-        <div>height: {size.height} width: {size.width}</div>
+        <div>height: {height} width: {width}</div>
+        <div>x: {x} y: {y}</div>
         <p>You clicked {count} times</p>
         <div>
             <button onClick={() => setCount(count + 1)}>Click me</button>
